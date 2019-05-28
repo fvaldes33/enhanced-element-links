@@ -2,7 +2,7 @@
     "name": "fvaldes33/enhanced-element-links",
     "description": "A simple plugin to provide an easier way to edit, view, download and more to element fields (entries, categories, assets).",
     "type": "craft-plugin",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "keywords": [
         "craft",
         "cms",
