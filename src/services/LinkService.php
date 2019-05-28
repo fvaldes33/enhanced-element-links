@@ -52,8 +52,9 @@ class LinkService extends Component
             ->andWhere(['targetId' => $id]);
         
         $relatedElements = [];
-        if ($otherRelations->count() > 1) {
-            $rels = $otherRelations->all();
+        $count = $otherRelations->count();
+        if ($count > 1) {
+            $rels = $otherRelations->limit(5)->all();
             foreach ($rels as $key => $rel) {
                 $relatedElement = Craft::$app->getElements()->getElementById($rel['sourceId'], null, $rel['sourceSiteId'] ?? $siteId);
                 if ($relatedElement && $relatedElement->title) {
@@ -67,7 +68,10 @@ class LinkService extends Component
             'elementUrl' => $element->url ?? null,
             'elementCpUrl' => $element->cpEditUrl ?? null,
             'elementAssetUrl' => $type === "craft\\elements\\Asset" ? $element->getUrl() : null,
-            'relatedElements' => array_values(array_unique($relatedElements))
+            'relatedElements' => [
+                "count" => (int) $count,
+                "related" => array_values(array_unique($relatedElements))
+            ]
         ];
     }
 }
