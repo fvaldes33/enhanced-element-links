@@ -48,7 +48,7 @@ Craft.EnhancedElementLinks = Garnish.Base.extend({
     link: function(el) {
         $(el).addClass('element-linked');
 
-        Craft.postActionRequest('enhanced-element-links/default/element-url',
+        Craft.queueActionRequest('enhanced-element-links/default/element-url',
             {
                 elementType: $(el).data('type'),
                 elementId: $(el).data('id'),
